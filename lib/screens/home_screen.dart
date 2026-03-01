@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
+import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/screens/launch_screen.dart';
 import 'package:money_manage/widgets/transaction_widget.dart';
 
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     TransactionModel(iconName: 'cart', title: 'Salary', date: DateTime(2026, 02, 22), amount: 2000.00, isExpense: false),
     TransactionModel(iconName: 'cart', title: 'Uber', date: DateTime(2026, 02, 22), amount: 35.00, isExpense: true),
     TransactionModel(iconName: 'cart', title: 'Online Store', date: DateTime(2026, 02, 22), amount: 150.00, isExpense: true),
+    TransactionModel(iconName: 'cart', title: 'Bank Transfer', date: DateTime(2026, 02, 22), amount: 150.00, isExpense: true),
     TransactionModel(iconName: 'cart', title: 'Bank Transfer', date: DateTime(2026, 02, 22), amount: 150.00, isExpense: true)
 
   ];
@@ -52,7 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: () {},
+                IconButton(onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const AddTransaction()));
+                },
                     icon: Icon(Icons.chevron_right)),
               ],
             ),
@@ -224,52 +229,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
-                    // child: ListView(
-                    //   children: [
-                    //     TransactionItem(
-                    //       icon: Icons.shopping_cart,
-                    //       title: "Groceries",
-                    //       date: "Today",
-                    //       amount: "-\$120.00",
-                    //       isExpense: true,
-                    //     ),
-                    //     TransactionItem(
-                    //       icon: Icons.attach_money,
-                    //       title: "Salary",
-                    //       date: "Mar 25",
-                    //       amount: "-\$2000.00",
-                    //       isExpense: false,
-                    //     ),
-                    //     TransactionItem(
-                    //       icon: Icons.local_taxi,
-                    //       title: "Uber",
-                    //       date: "Mar 24",
-                    //       amount: "-\$35.00",
-                    //       isExpense: true,
-                    //     ),
-                    //     TransactionItem(
-                    //       icon: Icons.shopping_cart_checkout,
-                    //       title: "Online Store",
-                    //       date: "Mar 20",
-                    //       amount: "-\$150.00",
-                    //       isExpense: true,
-                    //     ),
-                    //     TransactionItem(
-                    //       icon: Icons.food_bank,
-                    //       title: "Bank Transfer",
-                    //       date: "Mar 19",
-                    //       amount: "-\$100.00",
-                    //       isExpense: true,
-                    //     ),
-                    //     TransactionItem(
-                    //       icon: Icons.food_bank,
-                    //       title: "Bank Transfer",
-                    //       date: "Mar 19",
-                    //       amount: "-\$100.00",
-                    //       isExpense: true,
-                    //     )
-                    //   ]
-                    // ),
                   )
                 ],
               )
