@@ -10,6 +10,10 @@ class SuccessScreen extends StatefulWidget {
 class _SuccessScreenState extends State<SuccessScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Text("data"),
+      ),
+    );
   }
 }

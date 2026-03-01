@@ -75,7 +75,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => const HomeScreen()));
                       },
                       child: Padding(

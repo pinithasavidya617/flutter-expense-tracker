@@ -3,6 +3,7 @@ import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/screens/launch_screen.dart';
+import 'package:money_manage/screens/transactions_screen.dart';
 import 'package:money_manage/widgets/transaction_widget.dart';
 
 import '../widgets/transaction_items.dart';
@@ -201,7 +202,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Container(
                             margin: EdgeInsets.only(right: SizeConfig.blockWidth * 5),
-                            child: TextButton(onPressed: () {},
+                            child: TextButton(onPressed: () {
+                              Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Transactions()));
+                            },
                                 child: Text("See All",
                                 style: TextStyle(
                                   fontSize: SizeConfig.blockWidth * 5
@@ -235,7 +239,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){},
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AddTransaction()));
+      },
       backgroundColor: Colors.deepPurple,
         child: Icon(Icons.add, color: Colors.white,),
       ),
