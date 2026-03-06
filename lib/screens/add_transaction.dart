@@ -142,7 +142,6 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ),
                   ),
-
                   SizedBox(height: SizeConfig.blockHeight * 2),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
@@ -182,24 +181,21 @@ class _AddTransactionState extends State<AddTransaction> {
                     ),
                   ),
                   SizedBox(height: SizeConfig.blockHeight * 3),
-
                   TextField(
                     decoration: InputDecoration(
                       hintText: "Note (optional)",
                       border: UnderlineInputBorder(),
                     ),
                   ),
-
                   SizedBox(height: SizeConfig.blockHeight * 25),
-
                   GestureDetector(
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => SuccessScreen()),
-                            (route) => false,
+                        MaterialPageRoute(
+                            builder: (context) => SuccessScreen()),
+                        (route) => false,
                         // route.isFirst
-
                       );
                     },
                     child: Container(
