@@ -20,37 +20,49 @@ class _TransactionsState extends State<Transactions> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 5),
+              padding:
+                  EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 5),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      IconButton(onPressed: () {
-                        Navigator.pop(context,
-                            MaterialPageRoute(builder: (context) => HomeScreen()));
-                      } ,
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                          },
                           icon: Icon(Icons.arrow_back_ios)),
-
-                      SizedBox(width: SizeConfig.blockWidth * 16,),
-
-                      Text("Transactions",
+                      SizedBox(
+                        width: SizeConfig.blockWidth * 16,
+                      ),
+                      Text(
+                        "Transactions",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.blockWidth * 5
-                        ),),
-
+                            fontSize: SizeConfig.blockWidth * 5),
+                      ),
                     ],
                   ),
                   Column(
-                    children: [ElevatedButton(onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AddTransaction()));
-                    },
-                        child: Text("Add new Transaction"))],
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddTransaction()));
+                          },
+                          child: Text("Add new Transaction"))
+                    ],
                   )
                 ],
               ),
-            )],
-        ),),
-    );  }
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

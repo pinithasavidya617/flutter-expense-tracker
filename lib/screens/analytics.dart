@@ -18,23 +18,27 @@ class _AnalyticsState extends State<Analytics> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 5),
+              padding:
+                  EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 5),
               child: Row(
                 children: [
-                  IconButton(onPressed: () {} ,
-                      icon: Icon(Icons.arrow_back_ios)),
-
-                  SizedBox(width: SizeConfig.blockWidth * 16,),
-
-                  Text("Analytics",
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+                  SizedBox(
+                    width: SizeConfig.blockWidth * 16,
+                  ),
+                  Text(
+                    "Analytics",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: SizeConfig.blockWidth * 5
-                    ),),
+                        fontSize: SizeConfig.blockWidth * 5),
+                  ),
                 ],
               ),
-            )],
-        ),),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
