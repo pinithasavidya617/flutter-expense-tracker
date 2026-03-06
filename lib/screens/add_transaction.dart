@@ -110,6 +110,27 @@ class _AddTransactionState extends State<AddTransaction> {
                       ],
                     ),
                   ),
+                  SizedBox(height: SizeConfig.blockHeight * 3),
+
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "\$0.00",
+                        style: TextStyle(
+                          fontSize: SizeConfig.blockWidth * 8,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ),
+                  ),
+
                   Column(
                     children: [ElevatedButton(onPressed: () {
                       Navigator.pushAndRemoveUntil(context,
