@@ -29,7 +29,11 @@ class _AddTransactionState extends State<AddTransaction> {
                   Row(
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+                          onPressed: () {
+                            Navigator.pop(
+                              context,
+                            MaterialPageRoute(builder: (context) => Transactions()));
+                          }, icon: Icon(Icons.arrow_back_ios)),
                       SizedBox(
                         width: SizeConfig.blockWidth * 16,
                       ),
@@ -47,6 +51,10 @@ class _AddTransactionState extends State<AddTransaction> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: 2,
+                      )
                     ),
                     child: Row(
                       children: [
@@ -114,7 +122,7 @@ class _AddTransactionState extends State<AddTransaction> {
                           }
                       );
                     },
-                        child: Text("Save"))],
+                        child: Text("Add Expense"))],
                   )
                 ],
               ),
