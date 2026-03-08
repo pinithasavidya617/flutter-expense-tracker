@@ -190,33 +190,40 @@ class _AddTransactionState extends State<AddTransaction> {
                   SizedBox(height: SizeConfig.blockHeight * 25),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SuccessScreen()),
-                        (route) => false,
-                        // route.isFirst
-                      );
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => SuccessScreen()),
+                      //   (route) => false,
+                      //   // route.isFirst
+                      // );
                     },
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.deepPurple,
-                            Colors.pinkAccent,
-                          ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/transaction-success',
+                                (route) => route.settings.name == '/transactions');
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.deepPurple,
+                              Colors.pinkAccent,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          isExpense ? "Add Expense" : "Add Income",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.blockWidth * 4,
+                        child: Center(
+                          child: Text(
+                            isExpense ? "Add Expense" : "Add Income",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: SizeConfig.blockWidth * 4,
+                            ),
                           ),
                         ),
                       ),

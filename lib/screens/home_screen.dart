@@ -297,8 +297,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddTransaction()));
+          Navigator.pushNamed(context, '/transactions');
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => AddTransaction()));
         },
         backgroundColor: Colors.deepPurple,
         child: Icon(
