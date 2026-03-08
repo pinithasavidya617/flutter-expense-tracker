@@ -3,8 +3,7 @@ import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/screens/home_screen.dart';
 
 class LaunchScreen extends StatefulWidget {
-  const LaunchScreen({super.key, required this.title});
-  final String title;
+  const LaunchScreen({super.key});
 
   @override
   State<LaunchScreen> createState() => _LaunchScreenState();

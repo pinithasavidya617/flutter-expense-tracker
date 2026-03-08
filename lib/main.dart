@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
+import 'package:money_manage/screens/add_transaction.dart';
+import 'package:money_manage/screens/success_screen.dart';
+import 'package:money_manage/screens/transactions_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/launch_screen.dart';
 
@@ -13,6 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => LaunchScreen(),
+        '/home' : (context) => HomeScreen(),
+        '/transactions' : (context) => Transactions(),
+        '/transaction-add' : (context) => AddTransaction(),
+        '/transaction-success': (context) => SuccessScreen()
+      },
       builder: (context, child){
         SizeConfig.init(context);
         return child!;
@@ -21,7 +32,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LaunchScreen(title: "title"),
     );
   }
 }
