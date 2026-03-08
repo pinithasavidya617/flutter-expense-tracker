@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
-import 'package:money_manage/screens/home_screen.dart';
+import 'package:money_manage/screens/dashboard.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});

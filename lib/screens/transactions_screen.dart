@@ -95,23 +95,23 @@ class _TransactionsState extends State<Transactions> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 15,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(Icons.home),
-              Icon(Icons.receipt),
-              SizedBox(width: 40),
-              Icon(Icons.account_balance_wallet),
-              Icon(Icons.person),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: CircularNotchedRectangle(),
+      //   notchMargin: 15,
+      //   child: SizedBox(
+      //     height: 60,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         Icon(Icons.home),
+      //         Icon(Icons.receipt),
+      //         SizedBox(width: 40),
+      //         Icon(Icons.account_balance_wallet),
+      //         Icon(Icons.person),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

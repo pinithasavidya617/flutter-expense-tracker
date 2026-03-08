@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/screens/analytics.dart';
+import 'package:money_manage/screens/home_screen.dart';
 import 'package:money_manage/screens/success_screen.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/dashboard.dart';
 import 'screens/launch_screen.dart';
 
 void main() {
