@@ -16,6 +16,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  Future<void> openTransactions(BuildContext context) async {
+    final result = await Navigator.pushNamed(context, "/transactions");
+    print(result);
+  }
+
   final List<TransactionModel> transactions = [
     TransactionModel(
         iconName: 'cart',
@@ -252,13 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin:
                               EdgeInsets.only(right: SizeConfig.blockWidth * 5),
                           child: TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/transactions');
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => Transactions()));
-                              },
+                              onPressed: () => openTransactions(context),
                               child: Text(
                                 "See All",
                                 style: TextStyle(
@@ -299,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/transactions');
+          Navigator.pushNamed(context, '/transaction-add');
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => AddTransaction()));
         },

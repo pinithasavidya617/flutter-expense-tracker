@@ -72,7 +72,12 @@ class _TransactionsState extends State<Transactions> {
                     );
                   },
                 ),
-              )
+              ),
+              // ElevatedButton(onPressed: () => {
+              //   Navigator.pop(context, "Hello from transaction")
+              // }, child: Text("Go back"))
+
+              // Data Passing through a pop method
             ],
           ),
         ),
