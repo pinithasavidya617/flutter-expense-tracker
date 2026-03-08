@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/success_screen.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
 
@@ -199,11 +200,22 @@ class _AddTransactionState extends State<AddTransaction> {
                       // );
                     },
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, '/transaction-success',
-                                (route) => route.settings.name == '/transactions');
-                      },
+                        onTap: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/transaction-success',
+                                (route) => route.settings.name == '/home',
+                            arguments: {
+                              "transaction": TransactionModel(
+                                iconName: 'cart',
+                                title: 'Grocery',
+                                date: DateTime(2026, 02, 22),
+                                amount: 45.33,
+                                isExpense: true,
+                              )
+                            },
+                          );
+                        },
                       child: Container(
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(vertical: 16),

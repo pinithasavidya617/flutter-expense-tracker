@@ -47,9 +47,10 @@ class _TransactionsState extends State<Transactions> {
 
                   IconButton(
                       onPressed: () {
-                        Navigator.push((context), MaterialPageRoute(
-                          builder: (context) => Analytics()
-                        ));
+                        Navigator.pushNamed(context, '/analytics');
+                        // Navigator.push((context), MaterialPageRoute(
+                        //   builder: (context) => Analytics()
+                        // ));
                       },
                       icon: const Icon(Icons.arrow_forward_ios)),                ],
               ),

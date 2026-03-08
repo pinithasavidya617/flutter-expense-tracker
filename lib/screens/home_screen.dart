@@ -84,10 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AddTransaction()));
+                      Navigator.pushNamed(context, '/transaction-add');
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const AddTransaction()));
                     },
                     icon: Icon(Icons.chevron_right)),
               ],
@@ -252,10 +253,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               EdgeInsets.only(right: SizeConfig.blockWidth * 5),
                           child: TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Transactions()));
+                                Navigator.pushNamed(context, '/transactions');
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => Transactions()));
                               },
                               child: Text(
                                 "See All",
