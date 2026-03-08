@@ -88,10 +88,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                        Navigator.pushReplacementNamed(context, '/home'); //Naming Routes
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const HomeScreen()));
                       },
                       child: Padding(
                         padding:
