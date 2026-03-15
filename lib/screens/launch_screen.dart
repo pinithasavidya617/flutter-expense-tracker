@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
-import 'package:money_manage/screens/home_screen.dart';
+import 'package:money_manage/screens/dashboard.dart';
 
 class LaunchScreen extends StatefulWidget {
-  const LaunchScreen({super.key, required this.title});
-  final String title;
+  const LaunchScreen({super.key});
 
   @override
   State<LaunchScreen> createState() => _LaunchScreenState();
@@ -89,10 +88,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                        Navigator.pushReplacementNamed(context, '/home'); //Naming Routes
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const HomeScreen()));
                       },
                       child: Padding(
                         padding:

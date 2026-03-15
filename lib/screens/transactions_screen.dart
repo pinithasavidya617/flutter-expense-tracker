@@ -47,9 +47,10 @@ class _TransactionsState extends State<Transactions> {
 
                   IconButton(
                       onPressed: () {
-                        Navigator.push((context), MaterialPageRoute(
-                          builder: (context) => Analytics()
-                        ));
+                        Navigator.pushNamed(context, '/analytics');
+                        // Navigator.push((context), MaterialPageRoute(
+                        //   builder: (context) => Analytics()
+                        // ));
                       },
                       icon: const Icon(Icons.arrow_forward_ios)),                ],
               ),
@@ -71,15 +72,21 @@ class _TransactionsState extends State<Transactions> {
                     );
                   },
                 ),
-              )
+              ),
+              // ElevatedButton(onPressed: () => {
+              //   Navigator.pop(context, "Hello from transaction")
+              // }, child: Text("Go back"))
+
+              // Data Passing through a pop method
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddTransaction()));
+          Navigator.pushNamed(context, '/transaction-add');
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => AddTransaction()));
         },
         backgroundColor: Colors.deepPurple,
         child: Icon(
@@ -88,23 +95,23 @@ class _TransactionsState extends State<Transactions> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 15,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(Icons.home),
-              Icon(Icons.receipt),
-              SizedBox(width: 40),
-              Icon(Icons.account_balance_wallet),
-              Icon(Icons.person),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: CircularNotchedRectangle(),
+      //   notchMargin: 15,
+      //   child: SizedBox(
+      //     height: 60,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         Icon(Icons.home),
+      //         Icon(Icons.receipt),
+      //         SizedBox(width: 40),
+      //         Icon(Icons.account_balance_wallet),
+      //         Icon(Icons.person),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/success_screen.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
 
@@ -190,33 +191,51 @@ class _AddTransactionState extends State<AddTransaction> {
                   SizedBox(height: SizeConfig.blockHeight * 25),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SuccessScreen()),
-                        (route) => false,
-                        // route.isFirst
-                      );
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => SuccessScreen()),
+                      //   (route) => false,
+                      //   // route.isFirst
+                      // );
                     },
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.deepPurple,
-                            Colors.pinkAccent,
-                          ],
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/transaction-success',
+                                (route) => route.settings.name == '/home',
+                            arguments: {
+                              "transaction": TransactionModel(
+                                iconName: 'cart',
+                                title: 'Grocery',
+                                date: DateTime(2026, 02, 22),
+                                amount: 45.33,
+                                isExpense: true,
+                              )
+                            },
+                          );
+                        },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.deepPurple,
+                              Colors.pinkAccent,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          isExpense ? "Add Expense" : "Add Income",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.blockWidth * 4,
+                        child: Center(
+                          child: Text(
+                            isExpense ? "Add Expense" : "Add Income",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: SizeConfig.blockWidth * 4,
+                            ),
                           ),
                         ),
                       ),
