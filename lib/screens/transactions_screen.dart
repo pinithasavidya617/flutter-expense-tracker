@@ -84,8 +84,8 @@ class _TransactionsState extends State<Transactions> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/transaction-add');
-          // Navigator.pushNamed(context, '/add-transaction');
+          // Navigator.pushNamed(context, '/transaction-add');
+          Navigator.pushNamed(context, '/add-transactions-demo');
 
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => AddTransaction()));
