@@ -4,14 +4,14 @@ import 'package:money_manage/screens/transactions_screen.dart';
 
 import '../configs/size_config.dart';
 
-class AddTransactionDemo extends StatefulWidget {
-  const AddTransactionDemo({super.key});
+class InputFields extends StatefulWidget {
+  const InputFields({super.key});
 
   @override
-  State<AddTransactionDemo> createState() => _AddTransactionState();
+  State<InputFields> createState() => _AddTransactionState();
 }
 
-class _AddTransactionState extends State<AddTransactionDemo> {
+class _AddTransactionState extends State<InputFields> {
   String submission = 'No errors';
   bool showPassword = false;
   final firstNameController = TextEditingController();

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
+import 'package:money_manage/screens/add-transaction-demo.dart';
 import 'package:money_manage/screens/add_transaction.dart';
-import 'package:money_manage/screens/add_transaction_demo.dart';
+import 'package:money_manage/screens/input_fields.dart';
 import 'package:money_manage/screens/analytics.dart';
 import 'package:money_manage/screens/home_screen.dart';
 import 'package:money_manage/screens/success_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/transaction-add' : (context) => AddTransaction(),
         '/transaction-success': (context) => SuccessScreen(),
         '/analytics' : (context) => Analytics(),
+        '/input-fields' : (context) => InputFields(),
         '/add-transactions-demo' : (context) => AddTransactionDemo()
       },
       builder: (context, child){
