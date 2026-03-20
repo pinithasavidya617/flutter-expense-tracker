@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
 
 import '../configs/size_config.dart';
@@ -11,12 +12,12 @@ class AddTransactionDemo extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransactionDemo> {
-  String firstName = 'Dummy';
+  String submission = 'No errors';
   bool showPassword = false;
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
-  final emailController = TextEditingController();
+  final amountController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -71,63 +72,127 @@ class _AddTransactionState extends State<AddTransactionDemo> {
               child: Column(
                 children: [
                   Form(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       child: Column(
-                    children: [
-                      TextFormField(
-                        controller: firstNameController,
-                        decoration: InputDecoration(
-                          labelText: 'First Name',
-                          hintText: 'Please enter your name',
-                          border: UnderlineInputBorder(),
-                          prefixIcon: Icon(Icons.person),
-                        ),
-                        keyboardType: TextInputType.text,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "First name is required";
-                          }
-                        },
-                      ),
-                      TextFormField(
-                        controller: lastNameController,
-                        decoration: InputDecoration(
-                          labelText: 'Last Name',
-                          hintText: 'Please enter your last name',
-                          border: UnderlineInputBorder(),
-                          prefixIcon: Icon(Icons.person),
-                        ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      TextFormField(
-                        // maxLines: 5,
-                        controller: passwordController,
-                        decoration: InputDecoration(
-                            labelText: 'Password',
-                            hintText: 'Please enter your name',
-                            border: UnderlineInputBorder(),
-                            prefixIcon: Icon(Icons.key),
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    showPassword = !showPassword;
-                                  });
-                                },
-                                icon: Icon(Icons.remove_red_eye))),
-                        keyboardType: TextInputType.text,
-                        obscureText: !showPassword, //hide text like password
-                        // onChanged: (value) => {
-                        //   setState(() {
-                        //   })
-                        // },
-                      ),
-                      TextFormField()
-                    ],
-                  )),
-                  TextField(),
+                        children: [
+                          TextFormField(
+                            controller: firstNameController,
+                            decoration: InputDecoration(
+                              label: Text.rich(
+                                TextSpan(
+                                  text: "First Name",
+                                  children: [
+                                    TextSpan(
+                                      text: " * ",
+                                      style: TextStyle(color: Colors.red)
+                                      
+                                    )
+                                  ]
+                                )
+                              ),
+                              // labelText: 'First Name',
+                              hintText: 'Please enter your name',
+                              border: UnderlineInputBorder(),
+                              prefixIcon: Icon(Icons.person),
+                            ),
+                            inputFormatters: [LengthLimitingTextInputFormatter(10)], //max length
+                            keyboardType: TextInputType.text,
+                            maxLength: 10,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "First name is required";
+                              }
+                              return null;
+                            },
+                          ),
+                          TextFormField(
+                            controller: lastNameController,
+                            decoration: InputDecoration(
+                              labelText: 'Last Name',
+                              hintText: 'Please enter your last name',
+                              border: UnderlineInputBorder(),
+                              prefixIcon: Icon(Icons.person),
+                            ),
+                            keyboardType: TextInputType.text,
+                          ),
+                          TextFormField(
+                            // maxLines: 5,
+                            controller: passwordController,
+                            decoration: InputDecoration(
+                                labelText: 'Password',
+                                hintText: 'Please enter your name',
+                                border: UnderlineInputBorder(),
+                                prefixIcon: Icon(Icons.key),
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPassword = !showPassword;
+                                      });
+                                    },
+                                    icon: Icon(Icons.remove_red_eye))),
+                            keyboardType: TextInputType.text,
+                            obscureText:
+                                !showPassword, //hide text like password
+                            // onChanged: (value) => {
+                            //   setState(() {
+                            //   })
+                            // },
+                          ),
+                          TextFormField(
+                            controller: amountController,
+                            decoration: InputDecoration(
+                              label: Text.rich(
+                                  TextSpan(
+                                      text: "Amount",
+                                      children: [
+                                        TextSpan(
+                                            text: " * ",
+                                            style: TextStyle(color: Colors.red)
+
+                                        )
+                                      ]
+                                  )
+                              ),
+                              // labelText: 'First Name',
+                              hintText: 'Please enter your amount',
+                              border: UnderlineInputBorder(),
+                              prefixIcon: Icon(Icons.money),
+                            ),
+                            inputFormatters: [
+                              // FilteringTextInputFormatter.digitsOnly,
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'^\d+\.?\d{0,2}')
+                              )
+                              
+                            ],
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Amount is required";
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      )),
                   SizedBox(
                     height: 10,
                   ),
-                  Text("First Name : $firstName")
+                  ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          print("Successful");
+                          submission = "validated";
+                        }else{
+                          submission = "error";
+                        }
+                        setState(() {
+
+                        });
+                      },
+                      child: Text("Submit")),
+                  Text(submission)
                 ],
               ),
             ),
@@ -142,7 +207,7 @@ class _AddTransactionState extends State<AddTransactionDemo> {
     firstNameController.dispose();
     lastNameController.dispose();
     passwordController.dispose();
-    emailController.dispose();
+    amountController.dispose();
 
     super.dispose();
   }
