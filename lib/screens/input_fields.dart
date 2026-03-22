@@ -21,6 +21,7 @@ class _AddTransactionState extends State<InputFields> {
   final dateController = TextEditingController();
 
   String gender = "M";
+  bool termsAndConditions = false;
 
   Future<void> _pickDate(BuildContext context) async {
     DateTime? date = await showDatePicker(
@@ -198,34 +199,51 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
-                          Row(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: RadioListTile(
-                                  title: Text("Male"),
-                                  value: "M",
-                                  groupValue: gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      gender = value.toString();
-                                    });
-                                  },
-                                ),
+                              Text("Gender"),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: RadioListTile(
+                                      title: Text("Male"),
+                                      value: "M",
+                                      groupValue: gender,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          gender = value.toString();
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: RadioListTile(
+                                      title: Text("Female"),
+                                      value: "F",
+                                      groupValue: gender,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          gender = value.toString();
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: RadioListTile(
-                                  title: Text("Female"),
-                                  value: "F",
-                                  groupValue: gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      gender = value.toString();
-                                    });
-                                  },
-                                ),
-                              ),
+                              Text("Selected gender is $gender")
                             ],
-                          )
+                          ),
+                          CheckboxListTile(
+                              title: Text("Accept Terms and Conditions"),
+                              value: termsAndConditions,
+                              onChanged: (value) {
+                                setState(() {
+                                  termsAndConditions = !termsAndConditions;
+                                });
+                              }
+                              ),
+                          Text("Selected terms $termsAndConditions")
                         ],
                       )),
                   SizedBox(
