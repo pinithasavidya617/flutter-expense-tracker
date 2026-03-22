@@ -18,6 +18,21 @@ class _AddTransactionState extends State<InputFields> {
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
   final amountController = TextEditingController();
+  final dateController = TextEditingController();
+
+  String gender = "M";
+
+  Future<void> _pickDate(BuildContext context) async {
+    DateTime? date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2100));
+
+    if (date != null) {
+      dateController.text = date.toString();
+    }
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -79,24 +94,21 @@ class _AddTransactionState extends State<InputFields> {
                           TextFormField(
                             controller: firstNameController,
                             decoration: InputDecoration(
-                              label: Text.rich(
-                                TextSpan(
+                              label: Text.rich(TextSpan(
                                   text: "First Name",
                                   children: [
                                     TextSpan(
-                                      text: " * ",
-                                      style: TextStyle(color: Colors.red)
-                                      
-                                    )
-                                  ]
-                                )
-                              ),
+                                        text: " * ",
+                                        style: TextStyle(color: Colors.red))
+                                  ])),
                               // labelText: 'First Name',
                               hintText: 'Please enter your name',
                               border: UnderlineInputBorder(),
                               prefixIcon: Icon(Icons.person),
                             ),
-                            inputFormatters: [LengthLimitingTextInputFormatter(10)], //max length
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10)
+                            ], //max length
                             keyboardType: TextInputType.text,
                             maxLength: 10,
                             validator: (value) {
@@ -142,18 +154,13 @@ class _AddTransactionState extends State<InputFields> {
                           TextFormField(
                             controller: amountController,
                             decoration: InputDecoration(
-                              label: Text.rich(
-                                  TextSpan(
-                                      text: "Amount",
-                                      children: [
-                                        TextSpan(
-                                            text: " * ",
-                                            style: TextStyle(color: Colors.red)
-
-                                        )
-                                      ]
-                                  )
-                              ),
+                              label: Text.rich(TextSpan(
+                                  text: "Amount",
+                                  children: [
+                                    TextSpan(
+                                        text: " * ",
+                                        style: TextStyle(color: Colors.red))
+                                  ])),
                               // labelText: 'First Name',
                               hintText: 'Please enter your amount',
                               border: UnderlineInputBorder(),
@@ -162,9 +169,7 @@ class _AddTransactionState extends State<InputFields> {
                             inputFormatters: [
                               // FilteringTextInputFormatter.digitsOnly,
                               FilteringTextInputFormatter.allow(
-                                RegExp(r'^\d+\.?\d{0,2}')
-                              )
-                              
+                                  RegExp(r'^\d+\.?\d{0,2}'))
                             ],
                             keyboardType: TextInputType.number,
                             validator: (value) {
@@ -174,6 +179,53 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
+                          TextFormField(
+                            controller: dateController,
+                            readOnly: true,
+                            onTap: () => _pickDate(context),
+                            decoration: InputDecoration(
+                              label: Text.rich(TextSpan(
+                                text: "Date",
+                              )),
+                              hintText: 'Please enter transaction date',
+                              border: UnderlineInputBorder(),
+                              prefixIcon: Icon(Icons.calendar_month),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "First name is required";
+                              }
+                              return null;
+                            },
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: RadioListTile(
+                                  title: Text("Male"),
+                                  value: "M",
+                                  groupValue: gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      gender = value.toString();
+                                    });
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: RadioListTile(
+                                  title: Text("Female"),
+                                  value: "F",
+                                  groupValue: gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      gender = value.toString();
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       )),
                   SizedBox(
@@ -184,12 +236,10 @@ class _AddTransactionState extends State<InputFields> {
                         if (_formKey.currentState!.validate()) {
                           print("Successful");
                           submission = "validated";
-                        }else{
+                        } else {
                           submission = "error";
                         }
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                       child: Text("Submit")),
                   Text(submission)
@@ -208,6 +258,7 @@ class _AddTransactionState extends State<InputFields> {
     lastNameController.dispose();
     passwordController.dispose();
     amountController.dispose();
+    dateController.dispose();
 
     super.dispose();
   }
