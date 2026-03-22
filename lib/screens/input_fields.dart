@@ -22,6 +22,7 @@ class _AddTransactionState extends State<InputFields> {
 
   String gender = "M";
   bool termsAndConditions = false;
+  bool active = true;
 
   Future<void> _pickDate(BuildContext context) async {
     DateTime? date = await showDatePicker(
@@ -241,9 +242,16 @@ class _AddTransactionState extends State<InputFields> {
                                 setState(() {
                                   termsAndConditions = !termsAndConditions;
                                 });
-                              }
-                              ),
-                          Text("Selected terms $termsAndConditions")
+                              }),
+                          Text("Selected terms $termsAndConditions"),
+                          SwitchListTile(
+                              title: Text("User active"),
+                              value: active,
+                              onChanged: (value) {
+                                setState(() {
+                                  active = !active;
+                                });
+                              })
                         ],
                       )),
                   SizedBox(
