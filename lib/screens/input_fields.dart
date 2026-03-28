@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:money_manage/forms/radio_form_field.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
 
 import '../configs/size_config.dart';
@@ -200,6 +201,20 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
+                          RadioFormField(
+                              title: "Gender",
+                              options: ["Male", "Female"],
+                          onSaved: (value) {
+                                setState(() {
+                                  gender = value.toString();
+                                });
+                          },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Gender is required";
+                              }
+                              return null;
+                            },),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
