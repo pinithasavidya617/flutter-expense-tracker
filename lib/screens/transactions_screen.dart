@@ -85,8 +85,8 @@ class _TransactionsState extends State<Transactions> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Navigator.pushNamed(context, '/transaction-add');
-          // Navigator.pushNamed(context, '/input-fields');
-          Navigator.pushNamed(context, '/add-transactions-demo');
+          Navigator.pushNamed(context, '/input-fields');
+          // Navigator.pushNamed(context, '/add-transactions-demo');
 
 
           // Navigator.push(context,

@@ -4,6 +4,7 @@ import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/screens/launch_screen.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
+import 'package:money_manage/services/dashboard_service.dart';
 import 'package:money_manage/widgets/transaction_widget.dart';
 
 import '../widgets/transaction_items.dart';
@@ -16,6 +17,24 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+
+  final DashboardService _dashboardService = DashboardService();
+  List posts = [];
+  bool loading = true;
+
+  @override
+  void initState(){
+    super.initState();
+    loadPosts();
+
+  }
+
+  Future<void> loadPosts() async{
+    final data = await _dashboardService.getSummaryTransactions();
+    print(data);
+    posts = data;
+    loading = false;
+  }
 
   Future<void> openTransactions(BuildContext context) async {
     final result = await Navigator.pushNamed(context, "/transactions");
