@@ -1,3 +1,4 @@
+
 import 'package:dio/dio.dart';
 
 class DioClient {
@@ -11,37 +12,38 @@ class DioClient {
   DioClient._internal() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://dummyjson.com/',
-        connectTimeout: const Duration(seconds: 60),
-        receiveTimeout: const Duration(seconds: 60),
-        headers: {
-          "Content-Type": "application/json",
-        },
+          baseUrl: 'https://dummyjson.com/',
+          connectTimeout: const Duration( seconds: 60),
+          receiveTimeout: const Duration( seconds: 60),
+          headers: {
+            "Content-Type" : "application/json"
+          }
       ),
     );
     _initializeInterceptors();
+
   }
 
   void _initializeInterceptors() {
     dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          print("REQUEST[${options.method}] => PATH: ${options.path}");
-          return handler.next(options);
-        },
-        onResponse: (response, handler) {
-          print("RESPONSE[${response.statusCode}] => DATA: ${response.data}");
-          return handler.next(response);
-        },
-        onError: (error, handler) {
-          print("ERROR[${error.response?.statusCode}] => MESSAGE: ${error.message}");
-          return handler.next(error);
-        },
-      ),
+        InterceptorsWrapper(
+            onRequest: ( options , handler ) {
+              print("REQUEST[${options.method}] => PATH : ${options.path}");
+              return handler.next(options);
+            },
+            onResponse: ( response , handler ) {
+              print("RESPONSE[${response.statusCode}] => DATA : ${response.data}");
+              return handler.next(response);
+            },
+            onError: ( error , handler ) {
+              print("ERROR[${error.response?.statusCode}] => MESSAGE : ${error.message}");
+              return handler.next(error);
+            }
+        )
     );
   }
 
-  Future<Response> get(String url, {Map<String, dynamic>? queryParams}) async {
-    return await dio.get(url, queryParameters: queryParams);
+  Future<Response> get(String url, {Map<String , dynamic>? queryParams}) async {
+    return await dio.get(url , queryParameters: queryParams);
   }
 }
