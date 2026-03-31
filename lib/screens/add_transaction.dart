@@ -200,22 +200,23 @@ class _AddTransactionState extends State<AddTransaction> {
                       // );
                     },
                     child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            '/transaction-success',
-                                (route) => route.settings.name == '/home',
-                            arguments: {
-                              "transaction": TransactionModel(
-                                iconName: 'cart',
-                                title: 'Grocery',
-                                date: DateTime(2026, 02, 22),
-                                amount: 45.33,
-                                isExpense: true,
-                              )
-                            },
-                          );
-                        },
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/transaction-success',
+                          (route) => route.settings.name == '/home',
+                          arguments: {
+                            "transaction": TransactionModel(
+                              title: 'Grocery',
+                              amount: 45.33,
+                              transactionType: 'expense',
+                              category: 'Food',
+                              note: null,
+                              transactionDate: DateTime(2026, 2, 22),
+                            )
+                          },
+                        );
+                      },
                       child: Container(
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(vertical: 16),

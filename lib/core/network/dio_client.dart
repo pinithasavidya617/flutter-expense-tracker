@@ -12,7 +12,7 @@ class DioClient {
   DioClient._internal() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'https://dummyjson.com/',
+          baseUrl: 'http://10.0.2.2:8000/',
           connectTimeout: const Duration( seconds: 60),
           receiveTimeout: const Duration( seconds: 60),
           headers: {

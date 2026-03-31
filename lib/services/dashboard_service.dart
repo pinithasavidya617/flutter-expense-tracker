@@ -1,18 +1,20 @@
-
 import 'package:dio/dio.dart';
+import 'package:money_manage/data/model/post_model.dart';
+import 'package:money_manage/data/model/transaction_model.dart';
 
 import '../core/network/dio_client.dart';
 
 class DashboardService {
-
   final DioClient _dioClient = DioClient();
 
-  Future<List<dynamic>> getSummaryTransactions() async {
+  Future<List<TransactionModel>> getSummaryTransactions() async {
     try {
-      Response response = await _dioClient.get("products");
-      return response.data['products'];
-    }
-    catch ( e ) {
+      Response response = await _dioClient.get("transactions");
+      // print(response.data);
+      // List data = response.data['products'];
+      List data = response.data;
+      return response.data.map((e) => TransactionModel.fromJson(e)).toList();
+    } catch (e) {
       return [];
     }
   }
