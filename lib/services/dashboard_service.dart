@@ -13,7 +13,10 @@ class DashboardService {
       // print(response.data);
       // List data = response.data['products'];
       List data = response.data;
-      return response.data.map((e) => TransactionModel.fromJson(e)).toList();
+      // return response.data.map((e) => TransactionModel.fromJson(e)).toList();
+      return data
+          .map((e) => TransactionModel.fromJson(e))
+          .toList();
     } catch (e) {
       return [];
     }

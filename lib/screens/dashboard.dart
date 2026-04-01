@@ -25,6 +25,8 @@ class _DashboardState extends State<Dashboard> {
     final data = await _dashboardService.getSummaryTransactions();
     setState(() {
       transactions = List<TransactionModel>.from(data);
+      print("Transactions count: ${transactions.length}");
+
       loading = false;
     });
   }
@@ -215,9 +217,34 @@ class _DashboardState extends State<Dashboard> {
                         : ListView.separated(
                             itemCount: transactions.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(transactions[index].title),
-                              );
+                              return
+                                ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: transactions[index].transactionType == "income"
+                                        ? Colors.green
+                                        : Colors.red,
+                                    child: Icon(
+                                      transactions[index].transactionType == "income"
+                                          ? Icons.arrow_downward
+                                          : Icons.arrow_upward,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    transactions[index].title,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(transactions[index].category),
+                                  trailing: Text(
+                                    "\$${transactions[index].amount}",
+                                    style: TextStyle(
+                                      color: transactions[index].transactionType == "income"
+                                          ? Colors.green
+                                          : Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
                             },
                             separatorBuilder: (context, index) {
                               return Divider(thickness: 1.2);
