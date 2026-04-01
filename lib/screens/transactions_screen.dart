@@ -3,7 +3,7 @@ import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart'; // ✅ single source of TransactionModel
 import 'package:money_manage/services/dashboard_service.dart';
 import 'package:money_manage/widgets/date_selection_title.dart';
-import 'package:money_manage/widgets/transaction_widget.dart'; // ✅ TransactionWidget lives here
+import 'package:money_manage/widgets/transaction_tested_widgets/transaction_widget.dart'; // ✅ TransactionWidget lives here
 import '../widgets/filter_bar.dart';
 
 class Transactions extends StatefulWidget {

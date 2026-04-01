@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/services/dashboard_service.dart';
+import 'package:money_manage/widgets/transaction_tile.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -217,34 +218,8 @@ class _DashboardState extends State<Dashboard> {
                         : ListView.separated(
                             itemCount: transactions.length,
                             itemBuilder: (context, index) {
-                              return
-                                ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor: transactions[index].transactionType == "income"
-                                        ? Colors.green
-                                        : Colors.red,
-                                    child: Icon(
-                                      transactions[index].transactionType == "income"
-                                          ? Icons.arrow_downward
-                                          : Icons.arrow_upward,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  title: Text(
-                                    transactions[index].title,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  subtitle: Text(transactions[index].category),
-                                  trailing: Text(
-                                    "\$${transactions[index].amount}",
-                                    style: TextStyle(
-                                      color: transactions[index].transactionType == "income"
-                                          ? Colors.green
-                                          : Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                );
+                              return TransactionTile(
+                                  transaction: transactions[index]);
                             },
                             separatorBuilder: (context, index) {
                               return Divider(thickness: 1.2);
