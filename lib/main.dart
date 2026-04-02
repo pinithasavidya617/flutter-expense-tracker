@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/transaction-success': (context) => SuccessScreen(),
         '/analytics' : (context) => Analytics(),
         '/input-fields' : (context) => InputFields(),
-        '/add-transactions-demo' : (context) => AddTransactionDemo()
+        // '/add-transactions-demo' : (context) => AddTransactionDemo()
       },
       builder: (context, child){
         SizeConfig.init(context);

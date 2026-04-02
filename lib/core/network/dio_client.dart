@@ -12,7 +12,7 @@ class DioClient {
   DioClient._internal() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'https://dummyjson.com/',
+          baseUrl: 'http://10.0.2.2:8000/',
           connectTimeout: const Duration( seconds: 60),
           receiveTimeout: const Duration( seconds: 60),
           headers: {
@@ -45,5 +45,10 @@ class DioClient {
 
   Future<Response> get(String url, {Map<String , dynamic>? queryParams}) async {
     return await dio.get(url , queryParameters: queryParams);
+  }
+
+
+  Future<Response> post(String url, {dynamic data}) async {
+    return await dio.post(url , data: data);
   }
 }
