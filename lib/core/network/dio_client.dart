@@ -46,4 +46,9 @@ class DioClient {
   Future<Response> get(String url, {Map<String , dynamic>? queryParams}) async {
     return await dio.get(url , queryParameters: queryParams);
   }
+
+
+  Future<Response> post(String url, {dynamic data}) async {
+    return await dio.post(url , data: data);
+  }
 }

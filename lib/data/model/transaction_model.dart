@@ -30,4 +30,16 @@ class TransactionModel{
           : DateTime.now(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'transaction_type': transactionType,
+      'category': category,
+      'note': note,
+      'transaction_date': transactionDate.toIso8601String().split('T')[0],
+    };
+  }
 }
