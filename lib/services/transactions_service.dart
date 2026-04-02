@@ -21,7 +21,7 @@ class TransactionService {
 
   Future<TransactionModel> createTransaction(TransactionModel transactionModel) async {
     try {
-      Response response = await _dioClient.post("transactions", data: transactionModel.toJson());
+      Response response = await _dioClient.post("transactions/", data: transactionModel.toJson());
       return TransactionModel.fromJson(response.data);
     } catch (e) {
       return transactionModel;

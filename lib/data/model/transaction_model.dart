@@ -17,6 +17,8 @@ class TransactionModel{
     required this.transactionDate,
 });
 
+  bool get isExpense => transactionType == "expense";
+
   factory TransactionModel.fromJson(Map<String, dynamic> json) {
     return TransactionModel(
       id: json['id'] != null ? int.tryParse(json['id'].toString()) : null,
