@@ -7,7 +7,9 @@ import '../configs/size_config.dart';
 import '../services/transactions_service.dart';
 
 class AddTransaction extends StatefulWidget {
-  const AddTransaction({super.key});
+  final TransactionModel? transaction;
+
+  const AddTransaction({super.key , this.transaction});
 
   @override
   State<AddTransaction> createState() => _AddTransactionState();
@@ -43,6 +45,20 @@ class _AddTransactionState extends State<AddTransaction> {
         dateController.text =
         "${picked.day}/${picked.month}/${picked.year}";
       });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.transaction != null) {
+      isExpense = widget.transaction!.transactionType == 'expense';
+      titleController.text = widget.transaction!.title;
+      amountController.text = widget.transaction!.amount.toString();
+      noteController.text = widget.transaction!.note ?? '';
+      selectedCategory = widget.transaction!.category;
+      selectedDate = widget.transaction!.transactionDate;
+      dateController.text = widget.transaction!.transactionDate.toString();
     }
   }
 
