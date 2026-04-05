@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manage/api/util/api_response.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
 
@@ -318,14 +319,29 @@ class _AddTransactionState extends State<AddTransaction> {
 
                           print("Sending: ${data.toJson()}");
 
-                          await _transactionService.createTransaction(data);
+                          ApiResponse<TransactionModel> response = await _transactionService.createTransaction(data);
 
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            '/transaction-success',
-                            (route) => route.settings.name == '/home',
-                            arguments: {"transaction": data},
-                          );
+                          if (response.status == 200 || response.status == 201){
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/transaction-success',
+                                  (route) => route.settings.name == '/home',
+                              arguments: {"transaction": data},
+                            );
+                          }else{
+                            ScaffoldMessenger.of( context ).showSnackBar(
+                              SnackBar(content: Text( response.error ?? "Something went wrong", style: TextStyle(color: Colors.red),),
+                              backgroundColor: Colors.black.withAlpha(6),
+                              behavior: SnackBarBehavior.floating,
+                              duration: const Duration( seconds: 5),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)
+                                ),
+                              )
+                            );
+                          }
+                          print(response.status);
+
                         }
                       },
                       child: Container(

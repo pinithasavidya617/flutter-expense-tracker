@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:money_manage/api/util/api_response.dart';
 import 'package:money_manage/data/model/post_model.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 
@@ -19,12 +20,23 @@ class TransactionService {
     }
   }
 
-  Future<TransactionModel> createTransaction(TransactionModel transactionModel) async {
+  Future<ApiResponse<TransactionModel>> createTransaction(TransactionModel transactionModel) async {
     try {
       Response response = await _dioClient.post("transactions/", data: transactionModel.toJson());
-      return TransactionModel.fromJson(response.data);
-    } catch (e) {
-      return transactionModel;
+      TransactionModel dioTransaction = TransactionModel.fromJson( response.data );
+
+      // return TransactionModel.fromJson(response.data);
+      return ApiResponse.success(dioTransaction);
+    }
+    on DioException catch( e ){
+      return ApiResponse<TransactionModel>(
+        status: e.response?.statusCode ?? 500,
+        error: e.message ?? "Something went wrong"
+
+      );
+    }
+    catch (e) {
+      return ApiResponse.error("Unknown Error");
     }
   }
 }
