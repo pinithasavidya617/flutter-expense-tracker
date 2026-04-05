@@ -39,4 +39,23 @@ class TransactionService {
       return ApiResponse.error("Unknown Error");
     }
   }
+
+  Future<ApiResponse<TransactionModel>> updateTransaction(TransactionModel transactionModel) async {
+    try {
+      Response response = await _dioClient.patch("transactions/${transactionModel.id}", data: transactionModel.toJson());
+      TransactionModel dioTransaction = TransactionModel.fromJson( response.data );
+
+      return ApiResponse.success(dioTransaction);
+    }
+    on DioException catch( e ){
+      return ApiResponse<TransactionModel>(
+          status: e.response?.statusCode ?? 500,
+          error: e.message ?? "Something went wrong"
+
+      );
+    }
+    catch (e) {
+      return ApiResponse.error("Unknown Error");
+    }
+  }
 }

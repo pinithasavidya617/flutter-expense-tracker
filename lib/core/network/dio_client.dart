@@ -51,4 +51,8 @@ class DioClient {
   Future<Response> post(String url, {dynamic data}) async {
     return await dio.post(url , data: data);
   }
+
+  Future<Response> patch(String url, {dynamic data}) async {
+    return await dio.patch(url , data: data);
+  }
 }

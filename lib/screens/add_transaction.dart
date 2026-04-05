@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:money_manage/api/util/api_response.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
@@ -58,7 +59,7 @@ class _AddTransactionState extends State<AddTransaction> {
       noteController.text = widget.transaction!.note ?? '';
       selectedCategory = widget.transaction!.category;
       selectedDate = widget.transaction!.transactionDate;
-      dateController.text = widget.transaction!.transactionDate.toString();
+      dateController.text = DateFormat('yyyy-MM-dd').format(widget.transaction!.transactionDate) ?? '0';
     }
   }
 
@@ -323,7 +324,7 @@ class _AddTransactionState extends State<AddTransaction> {
                       onTap: () async {
                         if (_formKey.currentState!.validate()) {
                           TransactionModel data = TransactionModel(
-                            id: null,
+                            id: widget.transaction == null ? -1 : widget.transaction?.id ?? -1,
                             title: titleController.text,
                             amount: double.tryParse(amountController.text) ?? 0,
                             transactionType: isExpense ? 'expense' : 'income',
@@ -335,7 +336,10 @@ class _AddTransactionState extends State<AddTransaction> {
 
                           print("Sending: ${data.toJson()}");
 
-                          ApiResponse<TransactionModel> response = await _transactionService.createTransaction(data);
+                          ApiResponse<TransactionModel> response =
+                          widget.transaction == null ?
+                              await _transactionService.createTransaction(data) :
+                              await _transactionService.updateTransaction(data);
 
                           if (response.status == 200 || response.status == 201){
                             Navigator.pushNamedAndRemoveUntil(
