@@ -3,8 +3,10 @@ import 'package:intl/intl.dart';
 import 'package:money_manage/api/util/api_response.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/screens/transactions_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../configs/size_config.dart';
+import '../providers/transaction_provider.dart';
 import '../services/transactions_service.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -65,6 +67,8 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    final transactionProvider = Provider.of<TransactionProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -342,6 +346,7 @@ class _AddTransactionState extends State<AddTransaction> {
                               await _transactionService.updateTransaction(data);
 
                           if (response.status == 200 || response.status == 201){
+                            transactionProvider.loadTransactions();
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               '/transaction-success',

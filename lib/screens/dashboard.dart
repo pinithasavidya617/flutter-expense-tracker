@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
+import 'package:money_manage/providers/transaction_provider.dart';
 import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/services/dashboard_service.dart';
 import 'package:money_manage/widgets/transaction_tile.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -14,24 +16,27 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final DashboardService _dashboardService = DashboardService();
-  List<TransactionModel> transactions = [];
-  bool loading = true;
+  // List<TransactionModel> transactions = [];
 
   @override
   void initState() {
     super.initState();
-    loadPosts();
+    Future.microtask(() => 
+      Provider.of<TransactionProvider>(context, listen: false)
+          .loadTransactions());
+
+    
   }
 
-  Future<void> loadPosts() async {
-    final data = await _dashboardService.getSummaryTransactions();
-    setState(() {
-      transactions = List<TransactionModel>.from(data);
-      print("Transactions count: ${transactions.length}");
-
-      loading = false;
-    });
-  }
+  // Future<void> loadTransactions() async {
+  //   final data = await _dashboardService.getSummaryTransactions();
+  //   setState(() {
+  //     transactions = List<TransactionModel>.from(data);
+  //     print("Transactions count: ${transactions.length}");
+  //
+  //     loading = false;
+  //   });
+  // }
 
   Future<void> openTransactions(BuildContext context) async {
     final result = await Navigator.pushNamed(context, "/transactions");
@@ -40,6 +45,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -214,20 +220,20 @@ class _DashboardState extends State<Dashboard> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Color(0xFFEBEDF0)),
-                    child: loading
+                    child: transactionProvider.isLoading
                         ? const Center(child: CircularProgressIndicator())
                         : ListView.separated(
-                            itemCount: transactions.length,
+                            itemCount: transactionProvider.transactions.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) =>
-                                        AddTransaction(transaction: transactions[index])
+                                        AddTransaction(transaction: transactionProvider.transactions[index])
                                   ));
                                 },
                                 child: TransactionTile(
-                                    transaction: transactions[index]),
+                                    transaction: transactionProvider.transactions[index]),
                               );
                             },
                             separatorBuilder: (context, index) {
