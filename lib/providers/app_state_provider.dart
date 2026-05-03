@@ -10,5 +10,14 @@ class AppStateProvider extends ChangeNotifier{
 
   Future<void> init() async{
     _isFirstTime = await _localStorageService.getIsFirstTime();
+    notifyListeners();
   }
+
+  Future<void> setFirstTime() async{
+    await _localStorageService.setIsFirstTime();
+    _isFirstTime = false;
+    notifyListeners();
+  }
+
+
 }

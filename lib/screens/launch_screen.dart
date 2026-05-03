@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
+import 'package:money_manage/providers/app_state_provider.dart';
 import 'package:money_manage/screens/dashboard.dart';
+import 'package:provider/provider.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});
@@ -13,6 +15,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
     final double circleSize = SizeConfig.blockWidth * 70;
+    final AppStateProvider appStateProvider = Provider.of<AppStateProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -88,6 +91,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
+                        appStateProvider.setFirstTime();
                         Navigator.pushReplacementNamed(context, '/home'); //Naming Routes
                         // Navigator.pushReplacement(
                         //     context,

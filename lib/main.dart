@@ -27,27 +27,42 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppStateProvider()..init()),
         ChangeNotifierProvider(create: (_) => TransactionProvider())
       ],
-      child: MaterialApp(
-        initialRoute: '/',
-        routes: {
-          '/' : (context) => LaunchScreen(),
-          '/home' : (context) => HomeScreen(),
-          '/transactions' : (context) => Transactions(),
-          '/transaction-add' : (context) => AddTransaction(),
-          '/transaction-success': (context) => SuccessScreen(),
-          '/analytics' : (context) => Analytics(),
-          '/input-fields' : (context) => InputFields(),
-          // '/add-transactions-demo' : (context) => AddTransactionDemo()
-        },
-        builder: (context, child){
-          SizeConfig.init(context);
-          return child!;
-        },
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        child: Consumer<AppStateProvider>(
+          builder: (context, appState, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+
+              home: appState.isFirstTime
+                  ? const LaunchScreen()
+                  : const Dashboard(),
+
+                // initialRoute: '/',
+                // '/': (context) => LaunchScreen(),
+
+              routes: {
+                '/home': (context) => HomeScreen(),
+                '/transactions': (context) => Transactions(),
+                '/transaction-add': (context) => AddTransaction(),
+                '/transaction-success': (context) => SuccessScreen(),
+                '/analytics': (context) => Analytics(),
+                '/input-fields': (context) => InputFields(),
+              },
+
+              builder: (context, child) {
+                SizeConfig.init(context);
+                return child!;
+              },
+
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              ),
+            );
+          },
         ),
-      ),
+
+
+
+
     );
   }
 }
