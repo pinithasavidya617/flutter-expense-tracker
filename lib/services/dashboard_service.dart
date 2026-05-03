@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:money_manage/data/model/post_model.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
 
 import '../core/network/dio_client.dart';

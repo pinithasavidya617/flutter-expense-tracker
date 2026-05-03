@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
-import 'package:money_manage/data/model/transaction_model.dart';
 import 'package:money_manage/providers/app_state_provider.dart';
 import 'package:money_manage/providers/transaction_provider.dart';
 import 'package:money_manage/screens/add_transaction.dart';
