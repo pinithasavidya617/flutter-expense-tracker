@@ -20,7 +20,6 @@ class SuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            /// ✅ Success Icon
             Container(
               height: 120,
               width: 120,
@@ -37,7 +36,6 @@ class SuccessScreen extends StatelessWidget {
 
             SizedBox(height: 30),
 
-            /// ✅ Title
             Text(
               isExpense ? "Expense Added" : "Income Added",
               style: TextStyle(
@@ -49,7 +47,6 @@ class SuccessScreen extends StatelessWidget {
 
             SizedBox(height: 10),
 
-            /// ✅ Subtitle
             Text(
               isExpense
                   ? "Your expense has been recorded successfully."
@@ -63,7 +60,6 @@ class SuccessScreen extends StatelessWidget {
 
             SizedBox(height: 40),
 
-            /// ✅ Back to Dashboard Button
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -86,7 +82,6 @@ class SuccessScreen extends StatelessWidget {
 
             SizedBox(height: 15),
 
-            /// Optional secondary action
             TextButton(
               onPressed: () {
                 Navigator.pop(context,
