@@ -52,9 +52,20 @@ class MyApp extends StatelessWidget {
                 SizeConfig.init(context);
                 return child!;
               },
-
+              
+              themeMode: appState.themeMode,
               theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                colorScheme: const ColorScheme.light()
+              ),
+              darkTheme: ThemeData(
+                  colorScheme: const ColorScheme.dark(),
+                textTheme: TextTheme(
+                  bodyMedium: TextStyle(
+                    color: Colors.blue
+                  )
+                )
+
               ),
             );
           },

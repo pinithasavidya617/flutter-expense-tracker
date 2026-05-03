@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
 import 'package:money_manage/data/model/transaction_model.dart';
+import 'package:money_manage/providers/app_state_provider.dart';
 import 'package:money_manage/providers/transaction_provider.dart';
 import 'package:money_manage/screens/add_transaction.dart';
 import 'package:money_manage/services/dashboard_service.dart';
@@ -21,11 +22,11 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => 
+    Future.microtask(() =>
       Provider.of<TransactionProvider>(context, listen: false)
           .loadTransactions());
 
-    
+
   }
 
   // Future<void> loadTransactions() async {
@@ -46,6 +47,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final transactionProvider = Provider.of<TransactionProvider>(context);
+    final appStateProvider = Provider.of<AppStateProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -73,10 +75,15 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/transaction-add');
-                      },
-                      icon: Icon(Icons.chevron_right)),
+                    onPressed: () {
+                      appStateProvider.setDarkMode();
+                    },
+                    icon: Icon(
+                      appStateProvider.isDarkMode
+                          ? Icons.dark_mode
+                          : Icons.light_mode,
+                    ),
+                  )
                 ],
               ),
               Divider(thickness: 1),
@@ -196,7 +203,7 @@ class _DashboardState extends State<Dashboard> {
                         child: Text(
                           "Recent Transactions",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Theme.of(context).brightness == Brightness.light ? Colors.red : Colors.blue,
                               fontSize: SizeConfig.blockWidth * 6,
                               fontWeight: FontWeight.bold),
                         ),
