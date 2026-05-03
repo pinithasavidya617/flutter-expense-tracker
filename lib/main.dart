@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_manage/configs/size_config.dart';
+import 'package:money_manage/providers/app_state_provider.dart';
 import 'package:money_manage/providers/transaction_provider.dart';
 import 'package:money_manage/screens/add-transaction-demo.dart';
 import 'package:money_manage/screens/add_transaction.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => AppStateProvider()..init()),
         ChangeNotifierProvider(create: (_) => TransactionProvider())
       ],
       child: MaterialApp(
